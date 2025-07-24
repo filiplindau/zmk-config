@@ -58,7 +58,25 @@
        combo_ent {
             timeout-ms = <50>;
             key-positions = <19 29>;
-            bindings = <&kp RGUI>;
+            bindings = <&kp ENTER>;
+        };
+
+       combo_cut {
+            timeout-ms = <50>;
+            key-positions = <20 21>;
+            bindings = <&kp LC(X)>;
+        };
+
+       combo_copy {
+            timeout-ms = <50>;
+            key-positions = <21 22>;
+            bindings = <&kp LC(C)>;
+        };
+
+       combo_paste {
+            timeout-ms = <50>;
+            key-positions = <22 23>;
+            bindings = <&kp LC(V)>;
         };
 
     };
@@ -71,7 +89,7 @@
         &kp W       &kp F       &kp M       &kp P       &kp V                       &kp TAB     &kp DOT     &kp Q       &kp J       &kp Z
         &kp R       &kp S       &kp N       &kp T       &kp G                       &kp COMMA   &kp A       &kp E       &kp I       &kp H
         &kp X       &kp C       &kp L       &kp D       &kp K                       &kp MINUS   &kp U       &kp O       &kp Y       &kp B
-                                            &mo 1       &kp BSPC                    &kp SPACE   &mo 2
+                                            &lt 1 ENTER &kp BSPC                    &kp SPACE   &lt 2 RGUI
         >;
         };
 
