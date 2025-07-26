@@ -159,10 +159,10 @@
 
             fun_layer {
         bindings = <
-        &kp LS(N1)      &kp RA(N7)   &kp RA(N)    &kp LS(DOT) &kp LS(COMMA)            &kp RA(N2)   &kp LS(N3)   &kp RA(N4)   &kp LS(SLASH) &kp RA(MINUS)
-        &kp RA(N8)      &kp LS(N8)   &kp LS(N9)   &kp RA(N9)  &kp LS(MINUS)            &kp LS(N5)   &kp NUBS     &kp RA(NUBS) &kp SLASH     &kp LS(NUBS)
-        &kp LS(N6)      &kp RBRC     &kp RA(RBRC) &kp BSLH    &kp LS(N2)               &kp LS(N0)   &kp MINUS    &kp SLASH    &kp LS(SQT)   &kp LS(N7)
-                                                  &lt 4 ENTER &lt 1 BSPC               &lt 2 SPACE  &ltr 3 0
+        &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4              &kp PSCRN       &kp F9      &kp F10     &kp F11     &kp F12                   
+        &sk LGUI     &sk LALT     &sk LCTRL    &sk LSHFT     &none                     &kp CAPS        &kp F5      &kp F6      &kp F7      &kp F8                     
+        &bt BT_CLR   &none        &none        &sk RALT      &none                     &kp SLCK        &kp F1      &kp F2      &kp F3      &kp F4                      
+                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE     &ltr 3 0
         >;
         };
 
