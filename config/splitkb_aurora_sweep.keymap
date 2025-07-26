@@ -33,6 +33,12 @@
             };
         };
 
+    macros {
+        ZMK_MACRO(m_qu,
+        wait-ms = <30>;
+        tap-ms = <40>;
+        bindings = <&kp Q &kp U>;)
+    };
     combos {
         compatible = "zmk,combos";
         combo_esc {
@@ -104,7 +110,7 @@
         combo_qu {
             timeout-ms = <50>;
             key-positions = <7 8>;
-            bindings = <&kp q>, <&kp u>;
+            bindings = <&m_qu>;
         };
     };
 
