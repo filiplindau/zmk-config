@@ -23,22 +23,26 @@
 
 / {
     behaviors {
-            ltr: repeat_layer_tap {
-                compatible = "zmk,behavior-hold-tap";
-                #binding-cells = <2>;
-                flavor = "hold-preferred";
-                tapping-term-ms = <200>;
-                quick-tap-ms = <150>;
-                bindings = <&mo>, <&key_repeat>;
-            };
+        ltr: repeat_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+            bindings = <&mo>, <&key_repeat>;
         };
+    };
 
     macros {
-        ZMK_MACRO(m_qu,
-        wait-ms = <30>;
-        tap-ms = <40>;
-        bindings = <&kp Q &kp U>;)
+        m_qu: m_qu {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&kp Q &kp U>;
+        };
     };
+
     combos {
         compatible = "zmk,combos";
         combo_esc {
