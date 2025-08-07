@@ -70,7 +70,6 @@
             timeout-ms = <30>;
             key-positions = <23 31>;
             bindings = <&m_cbsp>;
-            wait-ms = <30>;
         };
 
         combo_tab {
