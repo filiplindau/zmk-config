@@ -45,9 +45,10 @@
         m_cbsp: m_cbsp {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <30>;
             tap-ms = <40>;
-            bindings = <&kp Q &kp U>;
+            bindings = <&macro_press &kp LCTRL>,
+                        <&macro_tap &kp BSPC>,
+                        <&macro_release &kp LCTRL>;
         };
     };
 
@@ -69,6 +70,7 @@
             timeout-ms = <30>;
             key-positions = <23 31>;
             bindings = <&m_cbsp>;
+            wait-ms = <30>;
         };
 
         combo_tab {
@@ -130,6 +132,12 @@
             key-positions = <7 8>;
             bindings = <&m_qu>;
         };
+
+        combo_cpswd {
+            timeout-ms = <30>;
+            key-positions = <14 17>;
+            bindings = <&caps_word>;
+        };
     };
 
         keymap {
@@ -139,7 +147,7 @@
         bindings = <
         &kp W       &kp F       &kp M       &kp P       &kp V                          &kp TAB     &kp DOT     &kp Q       &kp J       &kp Z
         &kp R       &kp S       &kp N       &kp T       &kp G                          &kp COMMA   &kp A       &kp E       &kp I       &kp H
-        &mt LSHFT X &kp C       &kp L       &kp D       &kp K                          &kp SLASH   &kp U       &kp O       &kp Y       &mt RSHFT B
+        &kp X       &kp C       &kp L       &kp D       &kp K                          &kp SLASH   &kp U       &kp O       &kp Y       &kp B
                                             &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE &ltr 3 0
         >;
         };
@@ -148,7 +156,7 @@
         bindings = <
         &kp LC(F4)  &kp LC(TAB) &kp LA(F4)  &kp LA(TAB) &none                          &kp TAB      &kp HOME     &kp UP       &kp END      &kp PG_UP
         &sk LGUI    &sk LALT    &sk LCTRL   &sk LSHFT   &none                          &kp DEL      &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN
-        &none       &none       &none       &none       &none                          &kp LS(HOME) &kp LC(LEFT) &kp ESC      &kp LC(RIGHT) &kp INS
+        &none       &none       &none       &none       &none                          &kp BSPC     &kp LC(LEFT) &kp ESC      &kp LC(RIGHT) &kp INS
                                             &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE  &ltr 3 0
         >;
         };
