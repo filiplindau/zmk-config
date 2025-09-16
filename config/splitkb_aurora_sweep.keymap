@@ -41,6 +41,14 @@
             flavor = "tap-preferred";
             bindings = <&shifted>, <&kp>;
         };
+
+        st_mo: sticky_layer_mo {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;
+            quick-tap-ms = <220>;
+            bindings = <&mo>, <&sl>;
+        };
     };
 
     macros {
@@ -184,7 +192,7 @@
         &as W       &as F       &as M       &as P       &as V                          &as TAB     &as DOT     &as Q       &as J       &as Z
         &as R       &as S       &as N       &as T       &as G                          &as COMMA   &as A       &as E       &as I       &as H
         &as X       &as C       &as L       &as D       &as K                          &as SLASH   &as U       &as O       &as Y       &as B
-                                            &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE &ltr 3 0
+                                            &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE &st_mo 3 5
         >;
         };
 
@@ -193,7 +201,7 @@
         &kp LC(F4)  &kp LC(TAB) &kp LA(F4)  &kp LA(TAB) &none                          &kp TAB      &kp HOME     &kp UP       &kp END      &kp PG_UP
         &sk LGUI    &sk LALT    &sk LCTRL   &sk LSHFT   &none                          &kp DEL      &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN
         &none       &sk RALT    &none       &none       &none                          &kp BSPC     &kp ENTER    &kp ESC      &kp LC(RIGHT) &kp INS
-                                            &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE  &ltr 3 0
+                                            &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE  &st_mo 3 5
         >;
         };
 
@@ -202,7 +210,7 @@
         &kp KP_DIVIDE   &kp N7      &kp N8      &kp N9      &kp SLASH                  &kp TAB      &kp HOME     &kp UP       &kp END       &kp PG_UP
         &kp KP_MULTIPLY &kp N4      &kp N5      &kp N6      &kp MINUS                  &kp DEL      &sk RSHFT    &sk RCTRL    &sk LALT      &sk RGUI
         &kp LS(N0)      &kp N1      &kp N2      &kp N3      &kp N0                     &kp BSPC     &kp LC(LEFT) &kp ESC      &sk RALT      &kp INS
-                                                &lt 4 ENTER &lt 1 BSPC                 &lt 2 SPACE  &ltr 3 0
+                                                &lt 4 ENTER &lt 1 BSPC                 &lt 2 SPACE  &st_mo 3 5
         >;
         };
 
@@ -211,7 +219,7 @@
         &kp LS(N1)      &kp RA(N7)   &kp RA(N0)    &kp LS(DOT) &kp LS(COMMA)            &kp RA(N2)   &kp LS(N3)   &kp RA(N4)   &kp LS(SLASH) &kp RA(MINUS)
         &kp RA(N8)      &kp LS(N8)   &kp LS(N9)   &kp RA(N9)  &kp LS(MINUS)            &kp LS(N5)   &kp NUBS     &kp RA(NUBS) &kp SLASH     &kp LS(NUBS)
         &kp LS(N6)      &kp RBRC     &kp RA(RBRC) &kp BSLH    &kp LS(N2)               &kp LS(N0)   &kp MINUS    &kp SLASH    &kp LS(SQT)   &kp LS(N7)
-                                                  &lt 4 ENTER &lt 1 BSPC               &lt 2 SPACE  &ltr 3 0
+                                                  &lt 4 ENTER &lt 1 BSPC               &lt 2 SPACE  &st_mo 3 5
         >;
         };
 
@@ -220,7 +228,16 @@
         &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4              &kp PSCRN       &kp F9      &kp F10     &kp F11     &kp F12                   
         &sk LGUI     &sk LALT     &sk LCTRL    &sk LSHFT     &none                     &kp CAPS        &kp F5      &kp F6      &kp F7      &kp F8                     
         &bt BT_CLR   &none        &none        &sk RALT      &none                     &kp SLCK        &kp F1      &kp F2      &kp F3      &kp F4                      
-                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE     &ltr 3 0
+                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE     &st_mo 3 5
+        >;
+        };
+
+            alt_layer {
+        bindings = <
+        &none        &none        &none        &none         &none                     &none        &none      &none     &none     &none                   
+        &sk LGUI     &sk LALT     &sk LCTRL    &sk LSHFT     &none                     &none        &kp LBKT   &kp SQT   &none      &none                     
+        &none        &none        &none        &sk RALT      &none                     &none        &kp SEMI   &none     &none      &none                      
+                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE  &st_mo 3 5
         >;
         };
 
