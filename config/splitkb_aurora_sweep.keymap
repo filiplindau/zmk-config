@@ -87,7 +87,7 @@
             <&macro_release &kp LSHFT>;
         };
 
-          as: autoshift {
+        as: autoshift {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             label = "AUTOSHIFT_KP";
@@ -101,6 +101,66 @@
             <&macro_param_1to1>,
             <&macro_param_1to2>,
             <&as_ht MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
+        };
+
+        m_copy: m_copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LCTRL>,
+                        <&macro_tap &kp C>,
+                        <&macro_release &kp LCTRL>;
+        };
+
+        m_paste: m_paste {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LCTRL>,
+                        <&macro_tap &kp V>,
+                        <&macro_release &kp LCTRL>;
+        };
+
+        m_cut: m_cut {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LCTRL>,
+                        <&macro_tap &kp X>,
+                        <&macro_release &kp LCTRL>;
+        };
+
+        m_undo: m_undo {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp LCTRL>,
+                        <&macro_tap &kp Z>,
+                        <&macro_release &kp LCTRL>;
+        };
+
+        m_tilde: m_tilde {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp RALT>,
+                        <&macro_tap &kp RBRC>,
+                        <&macro_release &kp RALT>;
+                        <&macro_tap &kp SPACE>;
+        };
+
+        m_pow: m_pow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_tap &kp RBRC>,
+                        <&macro_tap &kp SPACE>;
         };
 
     };
@@ -212,16 +272,16 @@
 
             nav_layer {
         bindings = <
-        &kp LC(F4)  &kp LC(TAB) &kp LA(F4)  &kp LA(TAB) &none                          &kp TAB      &kp HOME     &kp UP       &kp END      &kp PG_UP
+        &kp ESC     &sk RALT    &kp LA(F4)  &kp LA(TAB) &none                          &kp TAB      &kp HOME     &kp UP       &kp END      &kp PG_UP
         &sk LGUI    &sk LALT    &sk LCTRL   &sk LSHFT   &none                          &kp DEL      &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN
-        &none       &sk RALT    &none       &none       &none                          &kp BSPC     &kp ENTER    &kp ESC      &kp LC(RIGHT) &kp INS
+        &m_undo     &m_cut      &m_copy     &m_paste    &none                          &kp BSPC     &kp ENTER    &kp ESC      &kp LC(RIGHT) &kp INS
                                             &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE  &st_mo 3 5
         >;
         };
 
             num_layer {
         bindings = <
-        &kp KP_DIVIDE   &kp N7      &kp N8      &kp N9      &kp SLASH                  &kp TAB      &kp DOT      &kp COMMA    &kp END       &kp PG_UP
+        &kp KP_DIVIDE   &kp N7      &kp N8      &kp N9      &kp SLASH                  &kp TAB      &kp DOT      &kp COMMA    &kp RALT      &kp PG_UP
         &kp KP_MULTIPLY &kp N4      &kp N5      &kp N6      &kp MINUS                  &kp DEL      &sk RSHFT    &sk RCTRL    &sk LALT      &sk RGUI
         &kp LS(N0)      &kp N1      &kp N2      &kp N3      &kp N0                     &kp SPACE    &kp E        &kp X        &sk RALT      &kp B
                                                 &lt 4 ENTER &lt 1 BSPC                 &lt 2 SPACE  &st_mo 3 5
@@ -230,9 +290,9 @@
 
             sym_layer {
         bindings = <
-        &kp LS(N1)      &kp RA(N7)   &kp RA(N0)    &kp LS(DOT) &kp LS(COMMA)            &kp RA(N2)   &kp LS(N3)   &kp RA(N4)   &kp LS(SLASH) &kp RA(MINUS)
+        &kp LS(N1)      &kp RA(N7)   &kp RA(N0)    &kp LS(DOT) &kp LS(COMMA)           &kp RA(N2)   &kp LS(N3)   &kp RA(N4)   &kp LS(SLASH) &kp RA(MINUS)
         &kp RA(N8)      &kp LS(N8)   &kp LS(N9)   &kp RA(N9)  &kp LS(MINUS)            &kp LS(N5)   &kp NUBS     &kp RA(NUBS) &kp SLASH     &kp LS(NUBS)
-        &kp LS(N6)      &kp RBRC     &kp RA(RBRC) &kp BSLH    &kp LS(N2)               &kp LS(N0)   &kp MINUS    &kp SLASH    &kp LS(SQT)   &kp LS(N7)
+        &kp LS(N6)      &m_pow       &m_tilde     &kp BSLH    &kp LS(N2)               &kp LS(N0)   &kp MINUS    &kp SLASH    &kp LS(SQT)   &kp LS(N7)
                                                   &lt 4 ENTER &lt 1 BSPC               &lt 2 SPACE  &st_mo 3 5
         >;
         };
