@@ -1,0 +1,20 @@
+description: Contextual Magic Key
+compatible: "zmk,behavior-contextual"
+
+include: behavior.yaml
+
+properties:
+  "#binding-cells":
+    type: int
+    required: true
+    const: 0
+
+  fallback:
+    type: int
+    required: true
+    description: The default keycode to output if no match is found (e.g., SPACE)
+
+  map:
+    type: int-array
+    required: true
+    description: Array of keycode pairs (match, output). E.g., <Q U  T H>
