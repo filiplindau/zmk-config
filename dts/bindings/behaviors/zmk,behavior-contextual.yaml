@@ -1,20 +1,17 @@
 description: Contextual Magic Key
 compatible: "zmk,behavior-contextual"
 
-include: behavior.yaml
+# THE FIX: Point to ZMK's actual base file for 0-parameter behaviors
+include: zero_param.yaml
 
 properties:
-  "#binding-cells":
-    type: int
-    required: true
-    const: 0
-
   fallback:
     type: int
     required: true
     description: The default keycode to output if no match is found (e.g., SPACE)
 
   map:
-    type: int-array
+    # THE FIX: Zephyr uses 'array' for integer arrays, not 'int-array'
+    type: array
     required: true
     description: Array of keycode pairs (match, output). E.g., <Q U  T H>
