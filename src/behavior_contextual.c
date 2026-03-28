@@ -1,3 +1,6 @@
+// THIS LINE IS CRITICAL: It links the C code to your YAML file's "compatible" string
+#define DT_DRV_COMPAT zmk_behavior_contextual
+
 #include <zephyr/device.h>
 #include <zmk/behavior.h>
 #include <zmk/hid.h>
@@ -12,6 +15,11 @@ static const uint32_t fallback_key = DT_INST_PROP(0, fallback);
 
 // We need to remember what we outputted, so we can release it properly
 static uint32_t currently_held_output = 0;
+
+// Standard dummy init function
+static int behavior_contextual_init(const struct device *dev) {
+    return 0; 
+}
 
 static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
                                      struct zmk_behavior_binding_event event) {
