@@ -13,5 +13,4 @@ manifest:
       import: app/west.yml
   self:
     path: config
-    workspace-extra: ..
 

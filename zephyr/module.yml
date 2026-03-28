@@ -1,3 +1,4 @@
+name: magic_context_key
 build:
   cmake: .
   settings:
