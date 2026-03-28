@@ -163,6 +163,34 @@
                         <&macro_tap &kp SPACE>;
         };
 
+        m_at: m_at {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp RALT>,
+                        <&macro_tap &kp N2>,
+                        <&macro_release &kp RALT>;
+        };
+        m_lsqb: m_lsqb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp RALT>,
+                        <&macro_tap &kp N8>,
+                        <&macro_release &kp RALT>;
+        };
+        m_rsqb: m_rsqb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <40>;
+            bindings = <&macro_press &kp RALT>,
+                        <&macro_tap &kp N9>,
+                        <&macro_release &kp RALT>;
+        };
+
     };
 
     combos {
