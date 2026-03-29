@@ -6,6 +6,10 @@
 #include <zmk/behavior.h>
 #include <zmk/events/keycode_state_changed.h>
 #include <zmk/hid.h>
+#include <zephyr/zbus/zbus.h> // NEW: Include Zephyr's native Zbus
+
+// Tell the compiler that ZMK's core event channel exists
+ZBUS_CHAN_DECLARE(zmk_keycode_state_changed);
 
 // Pull in the global variable from last_key_tracker.c
 extern uint32_t last_pressed_keycode;
@@ -25,13 +29,17 @@ static int behavior_contextual_init(const struct device *dev) {
 
 // FIX: A clean helper function that correctly outputs keys the "ZMK Way"
 static void send_key(uint32_t keycode, bool state) {
-    raise_zmk_keycode_state_changed((struct zmk_keycode_state_changed) {
+    struct zmk_keycode_state_changed ev = {
         .usage_page = HID_USAGE_KEY,
         .keycode = keycode,
         .implicit_modifiers = 0,
         .explicit_modifiers = 0,
         .state = state,
-    });
+        .timestamp = k_uptime_get() // Required for Zbus events
+    };
+    
+    // THE FIX: Publish directly to the Zbus channel, bypassing the ZMK wrapper
+    zbus_chan_pub(&zmk_keycode_state_changed, &ev, K_NO_WAIT);
 }
 
 static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
