@@ -4,12 +4,9 @@
 #include <zephyr/device.h>
 #include <drivers/behavior.h>
 #include <zmk/behavior.h>
+#include <zephyr/zbus/zbus.h> // Pure Zbus
 #include <zmk/events/keycode_state_changed.h>
-#include <zmk/hid.h>
-#include <zephyr/zbus/zbus.h> // NEW: Include Zephyr's native Zbus
 
-// Tell the compiler that ZMK's core event channel exists
-ZBUS_CHAN_DECLARE(zmk_keycode_state_changed);
 
 // Pull in the global variable from last_key_tracker.c
 extern uint32_t last_pressed_keycode;
