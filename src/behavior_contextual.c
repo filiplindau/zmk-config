@@ -4,6 +4,7 @@
 #include <zephyr/device.h>
 #include <drivers/behavior.h>
 #include <zmk/behavior.h>
+#include <zmk/events/keycode_state_changed.h>
 #include <zmk/hid.h>
 
 // Pull in the global variable from last_key_tracker.c
@@ -20,6 +21,17 @@ static uint32_t currently_held_output = 0;
 // Standard dummy init function
 static int behavior_contextual_init(const struct device *dev) {
     return 0; 
+}
+
+// FIX: A clean helper function that correctly outputs keys the "ZMK Way"
+static void send_key(uint32_t keycode, bool state) {
+    raise_keycode_state_changed((struct zmk_keycode_state_changed) {
+        .usage_page = HID_USAGE_KEY,
+        .keycode = keycode,
+        .implicit_modifiers = 0,
+        .explicit_modifiers = 0,
+        .state = state,
+    });
 }
 
 static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
@@ -39,7 +51,7 @@ static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
 
     if (key_to_output != 0) {
         currently_held_output = key_to_output;
-        zmk_hid_keyboard_press(key_to_output);
+        send_key(key_to_output, true); // Use our new helper
     }
     
     return ZMK_BEHAVIOR_OPAQUE; 
@@ -50,7 +62,7 @@ static int on_keymap_binding_released(struct zmk_behavior_binding *binding,
                                           
     // Release whatever key we decided to output during the press event
     if (currently_held_output != 0) {
-        zmk_hid_keyboard_release(currently_held_output);
+        send_key(currently_held_output, false); // Use our new helper
         currently_held_output = 0;
     }
     
