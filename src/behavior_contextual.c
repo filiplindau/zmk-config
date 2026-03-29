@@ -25,7 +25,7 @@ static int behavior_contextual_init(const struct device *dev) {
 
 // FIX: A clean helper function that correctly outputs keys the "ZMK Way"
 static void send_key(uint32_t keycode, bool state) {
-    raise_keycode_state_changed((struct zmk_keycode_state_changed) {
+    raise_zmk_keycode_state_changed((struct zmk_keycode_state_changed) {
         .usage_page = HID_USAGE_KEY,
         .keycode = keycode,
         .implicit_modifiers = 0,

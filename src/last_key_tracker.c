@@ -7,7 +7,7 @@ uint32_t last_pressed_keycode = 0;
 
 int last_key_tracker_listener(const zmk_event_t *eh) {
     // Cast the generic event to a keycode_state_changed event
-    const struct zmk_keycode_state_changed *ev = as_keycode_state_changed(eh);
+    const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
     
     // We only want to track PRESS events (state == true), not releases (state == false)
     if (ev && ev->state) {
@@ -32,4 +32,4 @@ int last_key_tracker_listener(const zmk_event_t *eh) {
 ZMK_LISTENER(last_key_tracker, last_key_tracker_listener);
 
 // 2. Subscribe our listener to ZMK's central keycode event stream
-ZMK_SUBSCRIPTION(last_key_tracker, keycode_state_changed);
+ZMK_SUBSCRIPTION(last_key_tracker, zmk_keycode_state_changed);
