@@ -1,77 +1,96 @@
-// THIS LINE IS CRITICAL: It links the C code to your YAML file's "compatible" string
+/*
+ * Copyright (c) 2024 The ZMK Contributors
+ * SPDX-License-Identifier: MIT
+ */
+
 #define DT_DRV_COMPAT zmk_behavior_contextual
 
 #include <zephyr/device.h>
-#include <drivers/behavior.h>
 #include <zmk/behavior.h>
-#include <zephyr/zbus/zbus.h> // Pure Zbus
+#include <zmk/event_manager.h>
 #include <zmk/events/keycode_state_changed.h>
+#include <zmk/hid.h>
 
+static uint32_t last_pressed_keycode = 0;
 
-// Pull in the global variable from last_key_tracker.c
-extern uint32_t last_pressed_keycode;
-
-// Pull the map and fallback directly from the Devicetree (Instance 0)
-#define MAP_LEN DT_INST_PROP_LEN(0, map)
-static const uint32_t ctx_map[] = DT_INST_PROP(0, map);
-static const uint32_t fallback_key = DT_INST_PROP(0, fallback);
-
-// We need to remember what we outputted, so we can release it properly
-static uint32_t currently_held_output = 0;
-
-// Standard dummy init function
-static int behavior_contextual_init(const struct device *dev) {
-    return 0; 
-}
-
-// FIX: A clean helper function that correctly outputs keys the "ZMK Way"
-static void send_key(uint32_t keycode, bool state) {
-    struct zmk_keycode_state_changed ev = {
-        .usage_page = HID_USAGE_KEY,
-        .keycode = keycode,
-        .implicit_modifiers = 0,
-        .explicit_modifiers = 0,
-        .state = state,
-        .timestamp = k_uptime_get() // Required for Zbus events
-    };
+// Listen to the global keycode stream to track the previous key
+int contextual_tracker_listener(const zmk_event_t *eh) {
+    const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
     
-    // THE FIX: Publish directly to the Zbus channel, bypassing the ZMK wrapper
-    zbus_chan_pub(&zmk_keycode_state_changed, &ev, K_NO_WAIT);
+    if (ev && ev->state) { 
+        // Optional: Ignore modifiers (0xE0 to 0xE7) so "Shift + Q" still registers 'Q' as the last key
+        bool is_mod = (ev->usage_page == 0x07 && ev->keycode >= 0xE0 && ev->keycode <= 0xE7);
+        
+        if (!is_mod) {
+            // Re-encode to match the 32-bit values stored in the device tree
+            last_pressed_keycode = ZMK_HID_USAGE(ev->usage_page, ev->keycode);
+        }
+    }
+    return ZMK_EV_EVENT_BUBBLE;
 }
+
+ZMK_LISTENER(contextual_tracker, contextual_tracker_listener);
+ZMK_SUBSCRIPTION(contextual_tracker, zmk_keycode_state_changed);
+
+// Behavior implementation
+struct behavior_contextual_config {
+    uint32_t *pairs;
+    int pairs_len;
+};
+
+static int behavior_contextual_init(const struct device *dev) { return 0; }
 
 static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
                                      struct zmk_behavior_binding_event event) {
-                                         
-    uint32_t key_to_output = fallback_key; // Default to fallback
+    const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
+    const struct behavior_contextual_config *cfg = dev->config;
 
-    // Iterate through the array in steps of 2 [match, output, match, output...]
-    for (int i = 0; i < MAP_LEN; i += 2) {
-        // ZMK keycodes include modifier flags. For safety, we mask out the base keycode 
-        // to ensure a strict comparison (e.g., ignoring if Shift was held)
-        if ((last_pressed_keycode & 0xFF) == (ctx_map[i] & 0xFF)) {
-            key_to_output = ctx_map[i + 1];
+    uint32_t output_keycode = binding->param1; // This is your fallback key
+
+    // Scan the config map for a match: pairs of [trigger, output]
+    for (int i = 0; i < cfg->pairs_len; i += 2) {
+        if (cfg->pairs[i] == last_pressed_keycode) {
+            output_keycode = cfg->pairs[i+1];
             break;
         }
     }
 
-    if (key_to_output != 0) {
-        currently_held_output = key_to_output;
-        send_key(key_to_output, true); // Use our new helper
-    }
-    
-    return ZMK_BEHAVIOR_OPAQUE; 
+    // Emit the resulting keypress to the OS
+    raise_zmk_keycode_state_changed((struct zmk_keycode_state_changed){
+        .usage_page = ZMK_HID_USAGE_PAGE(output_keycode),
+        .keycode = ZMK_HID_USAGE_ID(output_keycode),
+        .implicit_modifiers = ZMK_HID_MODS(output_keycode),
+        .state = true,
+        .timestamp = k_uptime_get()
+    });
+
+    return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int on_keymap_binding_released(struct zmk_behavior_binding *binding,
                                       struct zmk_behavior_binding_event event) {
-                                          
-    // Release whatever key we decided to output during the press event
-    if (currently_held_output != 0) {
-        send_key(currently_held_output, false); // Use our new helper
-        currently_held_output = 0;
+    const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
+    const struct behavior_contextual_config *cfg = dev->config;
+
+    uint32_t output_keycode = binding->param1; // Fallback
+
+    for (int i = 0; i < cfg->pairs_len; i += 2) {
+        if (cfg->pairs[i] == last_pressed_keycode) {
+            output_keycode = cfg->pairs[i+1];
+            break;
+        }
     }
-    
-    return ZMK_BEHAVIOR_OPAQUE; 
+
+    // Release the key
+    raise_zmk_keycode_state_changed((struct zmk_keycode_state_changed){
+        .usage_page = ZMK_HID_USAGE_PAGE(output_keycode),
+        .keycode = ZMK_HID_USAGE_ID(output_keycode),
+        .implicit_modifiers = ZMK_HID_MODS(output_keycode),
+        .state = false,
+        .timestamp = k_uptime_get()
+    });
+
+    return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static const struct behavior_driver_api behavior_contextual_driver_api = {
@@ -79,6 +98,15 @@ static const struct behavior_driver_api behavior_contextual_driver_api = {
     .binding_released = on_keymap_binding_released,
 };
 
-BEHAVIOR_DT_INST_DEFINE(0, behavior_contextual_init, NULL, NULL, NULL,
-                        POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,
-                        &behavior_contextual_driver_api);
+#define CONTEXTUAL_INST(n)                                                     \
+    static uint32_t pairs_##n[] = DT_INST_PROP(n, key_pairs);                  \
+    static const struct behavior_contextual_config behavior_contextual_config_##n = { \
+        .pairs = pairs_##n,                                                    \
+        .pairs_len = ARRAY_SIZE(pairs_##n),                                    \
+    };                                                                         \
+    BEHAVIOR_DT_INST_DEFINE(n, behavior_contextual_init, NULL, NULL,           \
+                            &behavior_contextual_config_##n, POST_KERNEL,      \
+                            CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,               \
+                            &behavior_contextual_driver_api);
+
+DT_INST_FOREACH_STATUS_OKAY(CONTEXTUAL_INST)

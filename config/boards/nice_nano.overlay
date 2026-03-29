@@ -1,6 +1,0 @@
-// This file is evaluated BEFORE the shields, successfully acting as the adapter
-nice_view_spi: &spi1 {
-    compatible = "nordic,nrf-spim";
-    status = "okay";
-    cs-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>;
-};

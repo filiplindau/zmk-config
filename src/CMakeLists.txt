@@ -1,2 +1,0 @@
-zephyr_library()
-zephyr_library_sources(last_key_tracker.c behavior_contextual.c)
