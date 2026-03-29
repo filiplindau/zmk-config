@@ -10,14 +10,6 @@
 #include <dt-bindings/zmk/behaviors.h>
 //#include <keys_se.h>
 
-// Bypass the broken nice_view_adapter by defining the SPI bus here
-nice_view_spi: &spi1 {
-    compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi1_default>;
-    pinctrl-1 = <&spi1_sleep>;
-    pinctrl-names = "default", "sleep";
-    cs-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>;
-};
 
 &mt {
     flavor = "tap-preferred";
