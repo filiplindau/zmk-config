@@ -25,3 +25,8 @@ include:
   - board: nice_nano//zmk
     shield: splitkb_aurora_sweep_right
     artifact-name: aurora_sweep_right
+
+  # Temporarily add this to build the reset file
+  - board: nice_nano//zmk
+    shield: settings_reset
+    artifact-name: settings_reset
