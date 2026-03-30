@@ -20,5 +20,8 @@
 include:
   - board: nice_nano//zmk
     shield: splitkb_aurora_sweep_left nice_view_adapter nice_view
+    artifact-name: aurora_sweep_left
+
   - board: nice_nano//zmk
     shield: splitkb_aurora_sweep_right
+    artifact-name: aurora_sweep_right
