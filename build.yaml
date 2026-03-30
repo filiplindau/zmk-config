@@ -17,9 +17,8 @@
 #     cmake-args: -DCONFIG_ZMK_STUDIO=y
 #     artifact-name: corne_left_with_studio
 #
----
 include:
   - board: nice_nano//zmk
-    shield: splitkb_aurora_sweep_left nice_view
+    shield: splitkb_aurora_sweep_left nice_view_adapter nice_view
   - board: nice_nano//zmk
     shield: splitkb_aurora_sweep_right
