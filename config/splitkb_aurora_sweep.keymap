@@ -50,13 +50,13 @@
             bindings = <&mo>, <&sl>;
         };
 
-        ctx: contextual_magic_key {
-            compatible = "zmk,behavior-contextual";
-            #binding-cells = <1>;
+        // ctx: contextual_magic_key {
+        //     compatible = "zmk,behavior-contextual";
+        //     #binding-cells = <1>;
                         
-            // The magic dictionary: <PREVIOUS_KEY   OUTPUT_KEY>
-            key-pairs = <Q U>, <S C>, <N M>, <C R>, <A U>, <U A>;
-        };
+        //     // The magic dictionary: <PREVIOUS_KEY   OUTPUT_KEY>
+        //     key-pairs = <Q U>, <S C>, <N M>, <C R>, <A U>, <U A>;
+        // };
     };
 
     macros {

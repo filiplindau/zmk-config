@@ -7,14 +7,14 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: your_github
       url-base: https://github.com/filiplindau
-  projects:
-    - name: zmk
-      remote: zmkfirmware
-      revision: main
-      import: app/west.yml
-    - name: zmk-behavior-contextual
-      remote: your_github
-      revision: master # The branch name of your module repo
+  # projects:
+  #   - name: zmk
+  #     remote: zmkfirmware
+  #     revision: main
+  #     import: app/west.yml
+  #   - name: zmk-behavior-contextual
+  #     remote: your_github
+  #     revision: master # The branch name of your module repo
   self:
     path: config
 
