@@ -21,6 +21,7 @@ include:
   - board: nice_nano//zmk
     shield: nice_view_adapter nice_view splitkb_aurora_sweep_left
     artifact-name: aurora_sweep_left
+    cmake-args: -DEXTRA_DTC_OVERLAY_FILE="${GITHUB_WORKSPACE}/config/splitkb_aurora_sweep_left.overlay"
 
   - board: nice_nano//zmk
     shield: splitkb_aurora_sweep_right
