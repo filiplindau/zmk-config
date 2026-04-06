@@ -306,9 +306,9 @@
 
             default_layer {
         bindings = <
-        &as W       &as F       &as M       &as P       &as V                          &as TAB     &as DOT     &as Q       &as J       &as Z
-        &as R       &as S       &as N       &as T       &as G                          &as COMMA   &as A       &as E       &as I       &as H
-        &as X       &as C       &as L       &as D       &as K                          &as SLASH   &as U       &as O       &as Y       &as B
+        &kp W       &kp F       &kp M       &kp P       &kp V                          &kp TAB     &kp DOT     &kp Q       &kp J       &kp Z
+        &kp R       &kp S       &kp N       &kp T       &kp G                          &kp COMMA   &kp A       &kp E       &kp I       &kp H
+        &kp X       &kp C       &kp L       &kp D       &kp K                          &kp SLASH   &kp U       &kp O       &kp Y       &kp B
                                             &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE &lt 3 &m_ctx
         >;
         };
