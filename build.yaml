@@ -19,7 +19,8 @@
 #
 include:
   - board: nice_nano//zmk
-    shield: splitkb_aurora_sweep_left nice_view_adapter nice_view 
+    #shield: splitkb_aurora_sweep_left nice_view_adapter nice_view 
+    shield: splitkb_aurora_sweep_left  
     snippet: zmk-usb-logging
     artifact-name: aurora_sweep_left
 
@@ -31,4 +32,4 @@ include:
   - board: nice_nano//zmk
     shield: settings_reset
     artifact-name: settings_reset
-    
+
