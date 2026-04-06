@@ -50,6 +50,16 @@
             bindings = <&mo>, <&sl>;
         };
 
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "AUTO_SHIFT";
+            #binding-cells = <2>;
+            tapping-term-ms = <250>;     /* Adjust to your preferred hold time */
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;     /* <Hold>, <Tap> */
+        };
+
         // ctx: contextual_magic_key {
         //     compatible = "zmk,behavior-contextual";
         //     #binding-cells = <1>;
@@ -101,7 +111,7 @@
             <&macro_param_1to1 &macro_tap &kp MACRO_PLACEHOLDER>,
             <&macro_release &kp LSHFT>;
         };
-
+/*
         as: autoshift {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
@@ -117,7 +127,7 @@
             <&macro_param_1to2>,
             <&as_ht MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
         };
-
+*/
         m_copy: m_copy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -306,10 +316,10 @@
 
             default_layer {
         bindings = <
-        &kp W       &kp F       &kp M       &kp P       &kp V                          &kp TAB     &kp DOT     &kp Q       &kp J       &kp Z
-        &kp R       &kp S       &kp N       &kp T       &kp G                          &kp COMMA   &kp A       &kp E       &kp I       &kp H
-        &kp X       &kp C       &kp L       &kp D       &kp K                          &kp SLASH   &kp U       &kp O       &kp Y       &kp B
-                                            &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE &lt 3 &m_ctx
+        &as LS(W) W  &as LS(F) F  &as LS(M) M  &as LS(P) P  &as LS(V) V                 &as LS(TAB) TAB     &as LS(DOT) DOT  &as LS(Q) Q  &as LS(J) J  &as LS(Z) Z
+        &as LS(R) R  &as LS(S) S  &as LS(N) N  &as LS(T) T  &as LS(G) G                 &as LS(COMMA) COMMA &as LS(A) A      &as LS(E) E  &as LS(I) I  &as LS(H) H
+        &as LS(X) X  &as LS(C) C  &as LS(L) L  &as LS(D) D  &as LS(K) K                 &as LS(SLASH) SLASH &as LS(U) U      &as LS(O) O  &as LS(Y) Y  &as LS(B) B
+                                               &lt 4 ENTER  &lt 1 BSPC                  &lt 2 SPACE         &lt 3 &m_ctx
         >;
         };
 
