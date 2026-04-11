@@ -6,3 +6,9 @@
 &pro_micro_i2c {
     status = "disabled";
 };
+
+/ {
+    /* Delete the default OLED nodes so they don't look for I2C */
+    /delete-node/ &left_oled;
+    /delete-node/ &right_oled;
+};
