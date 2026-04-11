@@ -7,8 +7,12 @@
     status = "disabled";
 };
 
-/ {
-    /* Delete the default OLED nodes so they don't look for I2C */
-    /delete-node/ &left_oled;
-    /delete-node/ &right_oled;
+/* 2. Delete the default OLED nodes using the correct top-level syntax */
+/delete-node/ &left_oled;
+/delete-node/ &right_oled;
+
+/* 3. Configure the nice!view SPI and CS pin */
+&nice_view_spi {
+    status = "okay";
+    cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>;
 };
