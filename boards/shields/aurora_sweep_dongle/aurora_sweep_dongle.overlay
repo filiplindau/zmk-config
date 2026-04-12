@@ -1,6 +1,6 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 /* Import the base sweep layout */
-#include "aurora_sweep.dtsi" 
+#include "splitkb_aurora_sweep.dtsi"
 
 / {
     chosen {
