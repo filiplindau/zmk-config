@@ -18,9 +18,14 @@
 #     artifact-name: corne_left_with_studio
 #
 include:
+# 1. The Dongle (Central)
   - board: nice_nano//zmk
-    shield: splitkb_aurora_sweep_left nice_view_adapter nice_view 
-    snippet: zmk-usb-logging
+    shield: aurora_sweep_dongle
+#    snippet: zmk-usb-logging
+    artifact-name: dongle
+
+  - board: nice_nano//zmk
+    shield: splitkb_aurora_sweep_left 
     artifact-name: aurora_sweep_left
 
   - board: nice_nano//zmk
