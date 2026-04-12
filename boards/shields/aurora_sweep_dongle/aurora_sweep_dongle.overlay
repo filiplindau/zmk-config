@@ -1,18 +1,13 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+
 /* Import the base sweep layout */
 #include "splitkb_aurora_sweep.dtsi"
 
 / {
     chosen {
-        zmk,kscan = &mock_kscan;
-        zmk,matrix_transform = &default_transform;
-    };
-
-    mock_kscan: kscan_0 {
-        compatible = "zmk,kscan-mock";
-        columns = <0>;
-        rows = <0>;
-        events = <0>;
-        status = "disabled";
+        /* Point directly to the physical layout defined in the .dtsi */
+        zmk,physical-layout = &cuddlykeyboards_ferris_layout;
+        
+        /* We completely omit zmk,kscan so it expects NO local keys */
     };
 };
