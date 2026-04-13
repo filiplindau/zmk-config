@@ -15,6 +15,11 @@
     };
 };
 
+/* Disable the hardware UART to free up the TX pin for our Chip Select */
+&uart0 {
+    status = "disabled";
+};
+
 /* Enable the SPI bus and label it so the nice!view driver can find it */
 nice_view_spi: &pro_micro_spi {
     status = "okay";
