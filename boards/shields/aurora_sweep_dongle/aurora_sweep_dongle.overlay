@@ -9,5 +9,8 @@
         zmk,physical-layout = &cuddlykeyboards_ferris_layout;
         
         /* We completely omit zmk,kscan so it expects NO local keys */
+
+        /* This so the Central can decode the right half's column offset */
+        zmk,matrix_transform = &default_transform;
     };
 };
