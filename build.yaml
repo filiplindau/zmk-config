@@ -20,7 +20,7 @@
 include:
 # 1. The Dongle (Central)
   - board: nice_nano//zmk
-    shield: aurora_sweep_dongle nice_view
+    shield: aurora_sweep_dongle nice_view nice_view_adapter
     snippet: zmk-usb-logging
     artifact-name: dongle
 
