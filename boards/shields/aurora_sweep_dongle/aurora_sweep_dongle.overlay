@@ -15,13 +15,31 @@
     };
 };
 
-/* Disable the hardware UART to free up the TX pin for our Chip Select */
+/* 1. Kill the RGB LED driver hijacking MOSI (D16) */
+&spi3 {
+    status = "disabled";
+};
+&led_strip {
+    status = "disabled";
+};
+
+/* 2. Kill the I2C OLED driver hijacking our CS pin (D2) */
+&pro_micro_i2c {
+    status = "disabled";
+};
+
+/* 3. Kill the Matrix scanner hijacking SCK (D15) */
+&kscan0 {
+    status = "disabled";
+};
+
+/* 4. Disable the hardware UART (Just to be safe) */
 &uart0 {
     status = "disabled";
 };
 
-/* Enable the SPI bus and label it so the nice!view driver can find it */
+/* 5. Enable the SPI bus for the nice!view */
 nice_view_spi: &pro_micro_spi {
     status = "okay";
-    cs-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>; /* This maps to the TX pin */
+    cs-gpios = <&pro_micro 2 GPIO_ACTIVE_HIGH>;
 };
