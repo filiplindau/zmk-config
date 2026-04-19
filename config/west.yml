@@ -7,11 +7,16 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: your_github
       url-base: https://github.com/filiplindau
+    - name: mctechnology17
+      url-base: https://github.com/mctechnology17
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
+    - name: zmk-dongle-display-view
+      remote: mctechnology17
+      revision: main
     # - name: zmk-behavior-contextual
     #   remote: your_github
     #   revision: master # The branch name of your module repo
