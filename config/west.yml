@@ -7,15 +7,15 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: your_github
       url-base: https://github.com/filiplindau
-    - name: mctechnology17
-      url-base: https://github.com/mctechnology17
+    - name: englmaxi
+      url-base: https://github.com/englmaxi
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    - name: zmk-dongle-display-view
-      remote: mctechnology17
+    - name: zmk-dongle-display
+      remote: englmaxi
       revision: main
     # - name: zmk-behavior-contextual
     #   remote: your_github
