@@ -21,8 +21,8 @@ include:
 # 1. The Dongle (Central)
   - board: nice_nano//zmk
     #shield: aurora_sweep_dongle
-    shield: aurora_sweep_dongle nice_view_adapter dongle_display_view_pro_micro
-    #shield: aurora_sweep_dongle nice_view_adapter nice_view
+    #shield: aurora_sweep_dongle nice_view_adapter dongle_display_view_pro_micro
+    shield: aurora_sweep_dongle nice_view_adapter nice_view
     #snippet: zmk-usb-logging
     artifact-name: dongle
 
