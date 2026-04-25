@@ -27,3 +27,23 @@ nice_view_spi: &pro_micro_spi {
     cs-gpios = <&pro_micro 1 GPIO_ACTIVE_HIGH>; // This maps to the TX pin 
 };
 */
+
+/ {
+    chosen {
+        zephyr,display = &nice_view;
+    };
+};
+/*
+&pro_micro_spi {
+    status = "okay";
+    cs-gpios = <&pro_micro 4 GPIO_ACTIVE_HIGH>;
+
+    nice_view: ls0xx@0 {
+        compatible = "sharp,ls0xx";
+        spi-max-frequency = <1000000>;
+        reg = <0>;
+        width = <160>;
+        height = <68>;
+    };
+};
+*/
