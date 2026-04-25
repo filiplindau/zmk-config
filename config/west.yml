@@ -16,7 +16,7 @@ manifest:
       import: app/west.yml
     - name: zmk-dongle-display-view
       remote: my_github
-      revision: ea0b2b1
+      revision: 529551b
     # - name: zmk-behavior-contextual
     #   remote: my_github
     #   revision: master # The branch name of your module repo
