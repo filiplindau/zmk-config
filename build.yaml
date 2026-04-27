@@ -23,7 +23,7 @@ include:
     #shield: aurora_sweep_dongle
     shield: aurora_sweep_dongle nice_view_adapter dongle_display_view_pro_micro
     #shield: aurora_sweep_dongle nice_view_adapter nice_view
-    #snippet: zmk-usb-logging
+    snippet: zmk-usb-logging
     artifact-name: dongle
 
   - board: nice_nano//zmk
