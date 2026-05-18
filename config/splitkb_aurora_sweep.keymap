@@ -326,9 +326,9 @@
 
             nav_layer {
         bindings = <
-        &kp ESC     &sk RALT    &kp LA(F4)  &kp LA(TAB) &none                          &kp TAB      &kp HOME     &kp UP       &kp END      &kp PG_UP
-        &sk LGUI    &sk LALT    &sk LCTRL   &sk LSHFT   &none                          &kp DEL      &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN
-        &m_undo     &m_cut      &m_copy     &m_paste    &none                          &kp BSPC     &kp ENTER    &kp ESC      &kp LC(RIGHT) &kp INS
+        &kp ESC     &sk RALT    &kp LC(F)   &kp LC(R)   &kp LC(U)                      &kp TAB      &kp HOME     &kp UP       &kp END      &kp PG_UP
+        &sk LGUI    &sk LALT    &sk LCTRL   &sk LSHFT   &kp LC(N)                      &kp DEL      &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN
+        &m_undo     &m_cut      &m_copy     &m_paste    &kp LC(L)                      &kp BSPC     &kp ENTER    &kp LC(S)    &kp LC(O)    &kp INS
                                             &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE  &lt 3 &m_ctx
         >;
         };
@@ -337,7 +337,7 @@
         bindings = <
         &kp KP_DIVIDE   &kp N7      &kp N8      &kp N9      &kp SLASH                  &kp TAB      &kp DOT      &kp COMMA    &kp RALT      &kp PG_UP
         &kp KP_MULTIPLY &kp N4      &kp N5      &kp N6      &kp MINUS                  &kp DEL      &sk RSHFT    &sk RCTRL    &sk LALT      &sk RGUI
-        &kp LS(N0)      &kp N1      &kp N2      &kp N3      &kp N0                     &kp SPACE    &kp E        &kp X        &sk RALT      &kp B
+        &kp LS(N0)      &kp N1      &kp N2      &kp N3      &kp N0                     &kp SPACE    &kp E        &mo 3        &kp X      &kp B
                                                 &lt 4 ENTER &lt 1 BSPC                 &lt 2 SPACE  &lt 3 &m_ctx
         >;
         };
