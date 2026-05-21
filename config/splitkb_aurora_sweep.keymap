@@ -357,7 +357,7 @@
         bindings = <
         &kp LS(N1)      &kp RA(N7)   &kp RA(N0)    &kp LS(DOT) &kp LS(COMMA)           &kp RA(N2)   &kp LS(N3)   &kp RA(N4)   &kp LS(SLASH) &kp RA(MINUS)
         &kp RA(N8)      &kp LS(N8)   &kp LS(N9)   &kp RA(N9)  &kp LS(MINUS)            &kp LS(N5)   &kp NUBS     &kp RA(NUBS) &kp SLASH     &kp LS(NUBS)
-        &kp LS(N6)      &m_pow       &m_tilde     &kp BSLH    &kp LS(N2)               &kp LS(N0)   &m_btic      &kp SLASH    &kp LS(SQT)   &kp LS(N7)
+        &kp LS(N6)      &m_pow       &m_tilde     &kp BSLH    &kp LS(N2)               &m_btic      &m_btic      &kp SLASH    &kp LS(SQT)   &kp LS(N7)
                                                   &lt 4 ENTER &lt 1 BSPC               &lt 2 SPACE  &lt 3 &m_ctx
         >;
         };
