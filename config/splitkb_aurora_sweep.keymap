@@ -181,12 +181,9 @@
         m_tilde: m_tilde {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <30>;
+            wait-ms = <40>;
             tap-ms = <40>;
-            bindings =  <&macro_press &kp LCTRL &kp RALT>,
-                        <&macro_tap &kp RBRC>,
-                        <&macro_release &kp LCTRL &kp RALT>,
-                        <&macro_delay_time 30>,
+            bindings =  <&macro_tap &kp RA(RBRC)>,
                         <&macro_tap &kp SPACE>;
         };
 
