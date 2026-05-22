@@ -34,6 +34,15 @@
             bindings = <&mo>, <&key_repeat>;
         };
 
+        lt_ctx: layer_tap_contextual {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <250>;
+            quick-tap-ms = <220>;
+            bindings = <&mo>, <&m_ctx>;
+        };
+
         as_ht: autoshift_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "AUTOSHIFT_HOLD_TAP";
@@ -331,7 +340,7 @@
         &as LS(W) W  &as LS(F) F  &as LS(M) M  &as LS(P) P  &as LS(V) V                 &as LS(TAB) TAB     &as LS(DOT) DOT  &as LS(Q) Q  &as LS(J) J  &as LS(Z) Z
         &as LS(R) R  &as LS(S) S  &as LS(N) N  &as LS(T) T  &as LS(G) G                 &as LS(COMMA) COMMA &as LS(A) A      &as LS(E) E  &as LS(I) I  &as LS(H) H
         &as LS(X) X  &as LS(C) C  &as LS(L) L  &as LS(D) D  &as LS(K) K                 &as LS(SLASH) SLASH &as LS(U) U      &as LS(O) O  &as LS(Y) Y  &as LS(B) B
-                                               &lt 4 ENTER  &lt 1 BSPC                  &lt 2 SPACE         &lt 3 &m_ctx
+                                               &lt 4 ENTER  &lt 1 BSPC                  &lt 2 SPACE         &lt_ctx 3 0
         >;
         };
 
@@ -340,7 +349,7 @@
         &kp ESC     &sk RALT    &kp LC(F)   &kp LC(R)   &kp LC(U)                      &kp TAB      &kp HOME     &kp UP       &kp END      &kp PG_UP
         &sk LGUI    &sk LALT    &sk LCTRL   &sk LSHFT   &kp LC(N)                      &kp DEL      &kp LEFT     &kp DOWN     &kp RIGHT    &kp PG_DN
         &m_undo     &m_cut      &m_copy     &m_paste    &kp LC(L)                      &kp BSPC     &kp ENTER    &kp LC(S)    &kp LC(O)    &kp INS
-                                            &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE  &lt 3 &m_ctx
+                                            &lt 4 ENTER &lt 1 BSPC                     &lt 2 SPACE  &lt_ctx 3 0
         >;
         };
 
@@ -349,7 +358,7 @@
         &kp KP_DIVIDE   &kp N7      &kp N8      &kp N9      &kp SLASH                  &kp TAB      &kp DOT      &kp COMMA    &kp RALT      &kp PG_UP
         &kp KP_MULTIPLY &kp N4      &kp N5      &kp N6      &kp MINUS                  &kp DEL      &sk RSHFT    &sk RCTRL    &sk LALT      &sk RGUI
         &kp LS(N0)      &kp N1      &kp N2      &kp N3      &kp N0                     &kp SPACE    &kp E        &mo 3        &kp X      &kp B
-                                                &lt 4 ENTER &lt 1 BSPC                 &lt 2 SPACE  &lt 3 &m_ctx
+                                                &lt 4 ENTER &lt 1 BSPC                 &lt 2 SPACE  &lt_ctx 3 0
         >;
         };
 
@@ -358,7 +367,7 @@
         &kp LS(N1)      &kp RA(N7)   &kp RA(N0)    &kp LS(DOT) &kp LS(COMMA)           &kp RA(N2)   &kp LS(N3)   &kp RA(N4)   &kp LS(SLASH) &kp RA(MINUS)
         &kp RA(N8)      &kp LS(N8)   &kp LS(N9)   &kp RA(N9)  &kp LS(MINUS)            &kp LS(N5)   &kp NUBS     &kp RA(NUBS) &kp SLASH     &kp LS(NUBS)
         &kp LS(N6)      &m_pow       &m_tilde     &kp BSLH    &kp LS(N2)               &m_btic      &m_btic      &kp SLASH    &kp LS(SQT)   &kp LS(N7)
-                                                  &lt 4 ENTER &lt 1 BSPC               &lt 2 SPACE  &lt 3 &m_ctx
+                                                  &lt 4 ENTER &lt 1 BSPC               &lt 2 SPACE  &lt_ctx 3 0
         >;
         };
 
@@ -367,7 +376,7 @@
         &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4              &kp PSCRN       &kp F9      &kp F10     &kp F11     &kp F12                   
         &sk LGUI     &sk LALT     &sk LCTRL    &sk LSHFT     &none                     &kp CAPS        &kp F5      &kp F6      &kp F7      &kp F8                     
         &bt BT_CLR   &out OUT_TOG &none        &sk RALT      &none                     &kp SLCK        &kp F1      &kp F2      &kp F3      &kp F4                      
-                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE     &lt 3 &m_ctx
+                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE     &lt_ctx 3 0
         >;
         };
 
@@ -376,7 +385,7 @@
         &none        &none        &none        &none         &none                     &none        &none      &none     &none     &none                   
         &sk LGUI     &sk LALT     &sk LCTRL    &sk LSHFT     &none                     &none        &kp LBKT   &kp SQT   &none      &none                     
         &none        &none        &none        &sk RALT      &none                     &none        &kp SEMI   &none     &none      &none                      
-                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE  &lt 3 &m_ctx
+                                               &lt 4 ENTER   &lt 1 BSPC                &lt 2 SPACE  &lt_ctx 3 0
         >;
         };
 
