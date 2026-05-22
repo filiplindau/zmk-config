@@ -186,6 +186,7 @@
             bindings =  <&macro_press &kp LCTRL &kp RALT>,
                         <&macro_tap &kp RBRC>,
                         <&macro_release &kp LCTRL &kp RALT>,
+                        <&macro_delay_time 30>,
                         <&macro_tap &kp SPACE>;
         };
 
